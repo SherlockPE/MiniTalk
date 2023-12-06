@@ -6,16 +6,17 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/12/06 16:09:05 by flopez-r         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:55:54 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(void)
+int main(int argc, char const *argv[])
 {
-	//Mostrar PID
-	while (1)
-	{
-		
-	}
-	return 0;
+	int		PID;
+	char	*message;
+	
+	PID = atoi(argv[1]);
+	message = argv[2];
+
+	
 }
