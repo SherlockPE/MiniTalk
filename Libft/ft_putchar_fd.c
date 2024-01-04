@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_putchr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/12/06 18:53:19 by flopez-r         ###   ########.fr       */
+/*   Created: 2023/09/20 16:55:16 by fabriciolop       #+#    #+#             */
+/*   Updated: 2023/09/27 15:49:07 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
 #include <unistd.h>
-#include <stdio.h>
 
-int	main(void)
+void	ft_putchar_fd(char c, int fd)
 {
-	int		PID;
-	char	*message;
-
-	PID = getpid();
-	printf("PID: %d\n", PID);
-
-
-	return (0);
+	write(fd, &c, 1);
 }
+/* 
+int main(void)
+{
+	ft_putchar_fd('a', 1);
+	return 0;
+}
+ */

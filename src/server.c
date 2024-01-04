@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2023/12/06 18:55:54 by flopez-r         ###   ########.fr       */
+/*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
+/*   Updated: 2024/01/04 13:11:20 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(int argc, char const *argv[])
+#include "minitalk.h"
+
+int	main(void)
 {
 	int		PID;
 	char	*message;
-	
-	PID = atoi(argv[1]);
-	message = argv[2];
 
-	
+	PID = getpid();
+	ft_printf("PID: %d\n", PID);
+
+	return (0);
 }
