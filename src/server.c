@@ -6,11 +6,17 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/04 17:30:15 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:38:35 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	controlador(int	signal)
+{
+	ft_printf("\nSeñal recibida: %d\n", signal);
+}
+
 
 int	main(void)
 {
