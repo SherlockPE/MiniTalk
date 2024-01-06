@@ -6,23 +6,23 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/06 13:55:36 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:18:59 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	controlador(int	signal)
+void	bin_to_caracter()
 {
-	ft_printf("\nSeñal recibida: %d\n", signal);
+	
 }
 
 void	handler(int signal)
 {
 	if (signal == SIGUSR1)
-		ft_printf("1\n");
+		ft_printf("1");
 	else
-		ft_printf("0\n");
+		ft_printf("0");
 }
 
 int	main(void)
@@ -39,20 +39,23 @@ int	main(void)
 
 	while (1)
 	{
+		// ft_printf("%d\n", bin_number);
 	}
-	
-
-	// int i = 1;
-	// while (i)
-	// {
-	// 	int j = 10;
-	// 	while (j--)
-	// 	{
-	// 		ft_printf("%d ", i++);
-	// 		sleep(1);
-	// 	}
-	// 	ft_printf("\n");
-	// }
 
 	return (0);
 }
+
+
+
+// void	controlador(int	signal)
+// {
+// 	ft_printf("\nSeñal recibida: %d\n", signal);
+// }
+
+// void	handler(int signal)
+// {
+// 	if (signal == SIGUSR1)
+// 		ft_printf("1");
+// 	else
+// 		ft_printf("0");
+// }

@@ -6,44 +6,54 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/06 14:51:41 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:53:16 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_pow(int *base, int exponent)
+void	convert_to_binary(int number, int *binary_number)
 {
-	if (base == 0 && exponent == 0)
+	int	add_units;
+
+	add_units = 1;
+	while (number > 0)
 	{
-		*base = 0;
-		return ;	
+		*binary_number += (number % 2) * add_units;
+		number /= 2;
+		add_units *= 10;
 	}
-	else if (exponent == 0)
-	{
-		*base = 1;
-		return ;
-	}
-	while (exponent--)
-		*base *= *base;
 }
 
-void	convert_to_binary(int	base)
+void	send_caracter(pid_t PID, int	binary_number)
 {
-	int	exponent;
+	int	i;
+	char	*message;
 	
-	exponent = 7;
-	while (base) 
-	{
-		/* code */
-	}
-}
+	(void)PID;
+	message = ft_itoa(binary_number);
 
+	i = 0;
+	while (message[i])
+	{
+		if (message[i] == '1')
+			kill(PID, SIGUSR1);
+		else
+			kill(PID, SIGUSR2);
+		sleep(1);
+		i++;
+	}
+	
+}
 
 int	main(int argc, char const *argv[])
 {
-	pid_t PID;
+	pid_t 	PID;
+	int		binary_number;
 	char	*message;
+
+
+	//Check errors
 	if (argc == 1)
 		return (ft_printf("Argument not valid\n"), 0);
 
@@ -55,7 +65,10 @@ int	main(int argc, char const *argv[])
 	int i = 0;
 	while (message[i])
 	{
-		convert_to_binary(message[i]);
+		binary_number = 0;
+		convert_to_binary((unsigned char)message[i], &binary_number);
+		send_caracter(PID, binary_number);
+		i++;
 	}
 
 }
