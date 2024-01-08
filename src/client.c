@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/06 17:53:16 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:05:24 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	send_caracter(pid_t PID, int	binary_number)
 	{
 		if (message[i] == '1')
 			kill(PID, SIGUSR1);
-		else
+		else if (message[i] == '0')
 			kill(PID, SIGUSR2);
-		sleep(1);
+		usleep(10);
 		i++;
 	}
 	
