@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/09 14:15:33 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:23:12 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	send_caracter(pid_t PID, int	binary_number)
 	
 	(void)PID;
 	message = ft_itoa(binary_number);
-
+	//PROTEJER ESTE MENSAJE
+	ft_printf("%s\n", message);
 	i = 0;
 	while (message[i])
 	{
@@ -43,7 +44,7 @@ void	send_caracter(pid_t PID, int	binary_number)
 		usleep(10);
 		i++;
 	}
-	
+	free(message);
 }
 
 int	main(int argc, char const *argv[])

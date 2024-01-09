@@ -6,25 +6,35 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/09 14:35:00 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:13:37 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-sig_list *binary;
+int	result;
 
+// void	handler(int signal)
+// {
+// 	if (signal == SIGUSR1)
+// 		ft_printf("1");
+// 	else
+// 		ft_printf("0");
+// }
 
 void	handler(int signal)
 {
-	ft_printf("LLEGUÉ AQUÍ");
+	static int	bit_values = 64;
 	if (signal == SIGUSR1)
-		sig_add_back(&binary, sig_new(1));
+	{
+		ft_printf("1");
+		result += bit_values;
+	}
 	else if (signal == SIGUSR2)
-		sig_add_back(&binary, sig_new(0));
-	print_sig_lst(binary);
+		ft_printf("0");
+	bit_values = bit_values / 2;
+	ft_printf("\nValor en ascii: %d\n", result);
 }
-
 
 int	main(void)
 {
@@ -34,7 +44,8 @@ int	main(void)
 	ft_printf("PID: %d\n", PID);
 	ft_printf("MINITALK PRUEBA\n");
 
-	binary = NULL;
+
+	result = 0;
 	signal(SIGUSR1, handler);
 	signal(SIGUSR2, handler);
 
@@ -46,8 +57,42 @@ int	main(void)
 }
 
 
+// t_list	*byte_value;
+
+// void	handler(int signal)
+// {
+// 	int	*content;
+
+// 	content = (int *)malloc(sizeof(int));
+// 	if (signal == SIGUSR1)
+// 		*content = 1;
+// 	else if (signal == SIGUSR2)
+// 		*content = 0;
+// 	ft_lstadd_back(&byte_value, ft_lstnew(content));
+// 	print_listas(byte_value);
+// }
 
 
+// sig_list *binary;
+// t_list	*numbers;
+
+// void	handler(int signal)
+// {
+// 	int	*content;
+
+// 	content = (int *)ft_calloc(1, sizeof(int));
+
+// 	ft_printf("LLEGUÉ AQUÍ S:%d\n", signal);
+// 	if (signal == SIGUSR1)
+// 		*content = 1;
+// 		// sig_add_back(&binary, sig_new(1));
+// 	else if (signal == SIGUSR2)
+// 		*content = 2;
+// 		// sig_add_back(&binary, sig_new(0));
+// 	ft_lstadd_back(&numbers, ft_lstnew(content));
+// 	print_listas(numbers, 0);
+// 	// print_sig_lst(binary);
+// }
 
 
 
