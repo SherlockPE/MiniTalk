@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/09 17:13:37 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:36:01 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ void	handler(int signal)
 {
 	static int	bit_values = 64;
 	if (signal == SIGUSR1)
-	{
-		ft_printf("1");
 		result += bit_values;
-	}
-	else if (signal == SIGUSR2)
-		ft_printf("0");
 	bit_values = bit_values / 2;
 	ft_printf("\nValor en ascii: %d\n", result);
 }
