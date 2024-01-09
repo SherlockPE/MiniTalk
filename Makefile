@@ -6,14 +6,15 @@
 #    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 13:26:31 by flopez-r          #+#    #+#              #
-#    Updated: 2024/01/04 15:46:25 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/01/09 14:07:43 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER = server
 CLIENT = client
 
-SRC_SERVER =	src/server.c
+SRC_SERVER =	src/server.c\
+				src/minitalk_utils.c
 SRC_CLIENT =	src/client.c
 
 OBJ_SERVER = $(SRC_SERVER:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/08 16:05:24 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:15:33 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char const *argv[])
 
 
 	//Check errors
-	if (argc == 1)
+	if (argc <= 2)
 		return (ft_printf("Argument not valid\n"), 0);
 
 	//Receive parameters
