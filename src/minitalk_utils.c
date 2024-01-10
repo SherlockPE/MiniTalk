@@ -6,13 +6,13 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:20 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/09 16:20:33 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:50:12 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include    "minitalk.h"
 
-void	print_listas(t_list *header_a)
+/* void	print_listas(t_list *header_a)
 {
 	printf("---------------------------------\n");
 	printf("		Stack of bits		:\n");
@@ -22,7 +22,7 @@ void	print_listas(t_list *header_a)
 		header_a = header_a->next;
 	}
 	printf("---------------------------------\n");
-}
+} */
 
 
 /* void	print_sig_lst(sig_list	*header)
