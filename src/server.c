@@ -6,52 +6,73 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/09 17:36:01 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:43:48 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	result;
-
-// void	handler(int signal)
-// {
-// 	if (signal == SIGUSR1)
-// 		ft_printf("1");
-// 	else
-// 		ft_printf("0");
-// }
+char	*result;
 
 void	handler(int signal)
+{
+	char	*aux;
+	aux = result;
+	if (signal == SIGUSR1)
+		result = ft_strjoin(result, "1");
+	else if (signal == SIGUSR2)
+		result = ft_strjoin(result, "0");
+	free(aux);
+}
+
+
+int	main(void)
+{
+	int					PID;
+	struct sigaction	ss;
+	sigset_t			signals;
+
+	PID = getpid();
+	ft_printf("PID: %d\n", PID);
+	//Inicialize
+	result = ft_strdup("");
+	
+	// Create mask
+	sigemptyset(&signals);
+	sigaddset(&signals, SIGUSR1);
+	sigaddset(&signals, SIGUSR2);
+	ss.sa_handler = handler;
+	//Listener
+	sigaction(SIGUSR1, &ss, NULL);
+	sigaction(SIGUSR2, &ss, NULL);
+
+	while (1)
+	{
+	}
+	return (0);
+}
+// int		result;
+
+/* void	handler(int signal)
+{
+	if (signal == SIGUSR1)
+		ft_printf("%d", 1);
+	else if (signal == SIGUSR2)
+		ft_printf("%d", 0);
+}
+ */
+
+/* void	handler(int signal)
 {
 	static int	bit_values = 64;
 	if (signal == SIGUSR1)
 		result += bit_values;
 	bit_values = bit_values / 2;
 	ft_printf("\nValor en ascii: %d\n", result);
-}
+} */
 
-int	main(void)
-{
-	int		PID;
-
-	PID = getpid();
-	ft_printf("PID: %d\n", PID);
-	ft_printf("MINITALK PRUEBA\n");
-
-
-	result = 0;
-	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
-
-	while (1)
-	{
-	}
-
-	return (0);
-}
-
-
+// signal(SIGUSR1, handler);
+// signal(SIGUSR2, handler);
 // t_list	*byte_value;
 
 // void	handler(int signal)
@@ -66,7 +87,6 @@ int	main(void)
 // 	ft_lstadd_back(&byte_value, ft_lstnew(content));
 // 	print_listas(byte_value);
 // }
-
 
 // sig_list *binary;
 // t_list	*numbers;
@@ -89,11 +109,6 @@ int	main(void)
 // 	// print_sig_lst(binary);
 // }
 
-
-
-
-
-
 /* void	handler(int signal)
 {
 	if (signal == SIGUSR1)
@@ -101,19 +116,6 @@ int	main(void)
 	else if (signal == SIGUSR2)
 		ft_printf("0");
 } */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // void	handler(int signal)
 // {
@@ -166,7 +168,6 @@ int	main(void)
 
 // 	ft_printf("Señal recibida: %d\n", signal);
 
-
 // 	//Assign memory to content
 // 	content = malloc(sizeof(int));
 // 	if (!content)
@@ -181,18 +182,15 @@ int	main(void)
 // 	else if (signal == SIGUSR2)
 // 		*content = 0;
 
-
 // 	//Añadir elemento a la lista
 // 	while (ft_lstsize(byte) <= 7)
 // 	{
 // 		ft_lstadd_back(&byte, ft_lstnew(content));
 // 		print_list(byte);
-		
+
 // 	}
 
 // }
-
-
 
 // void	bin_to_caracter(char	*character)
 // {
@@ -200,7 +198,7 @@ int	main(void)
 
 // 	aux = byte_character;
 // 	byte_character = ft_strjoin(byte_character, character);
-	
+
 // 	int len = ft_strlen(byte_character);
 // 	if (len == 7)
 // 	{
@@ -208,16 +206,16 @@ int	main(void)
 // 		free(byte_character);
 // 		byte_character = "";
 // 	}
-	
+
 // 	free(aux);
 // }
 
-	// if (signal == SIGUSR1)
-	// 	bin_to_caracter("1");
-	// else if (signal == SIGUSR2)
-	// 	bin_to_caracter("0");
-	// else
-	// 	ft_printf("\nSignal received: %d\n", signal);
+// if (signal == SIGUSR1)
+// 	bin_to_caracter("1");
+// else if (signal == SIGUSR2)
+// 	bin_to_caracter("0");
+// else
+// 	ft_printf("\nSignal received: %d\n", signal);
 
 // void	controlador(int	signal)
 // {
