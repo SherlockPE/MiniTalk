@@ -6,52 +6,32 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/09 17:23:12 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:37:55 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	convert_to_binary(int number, int *binary_number)
-{
-	int	add_units;
-
-	add_units = 1;
-	while (number > 0)
-	{
-		*binary_number += (number % 2) * add_units;
-		number /= 2;
-		add_units *= 10;
-	}
-}
-
-void	send_caracter(pid_t PID, int	binary_number)
+void	convert_to_binary(int ascii_value, pid_t PID)
 {
 	int	i;
-	char	*message;
-	
-	(void)PID;
-	message = ft_itoa(binary_number);
-	//PROTEJER ESTE MENSAJE
-	ft_printf("%s\n", message);
+
 	i = 0;
-	while (message[i])
+	while (i < 8)
 	{
-		if (message[i] == '1')
+		if (ascii_value & (1 << i))
 			kill(PID, SIGUSR1);
-		else if (message[i] == '0')
+		else
 			kill(PID, SIGUSR2);
-		usleep(10);
 		i++;
+		usleep(100);
 	}
-	free(message);
 }
 
 int	main(int argc, char const *argv[])
 {
 	pid_t 	PID;
-	int		binary_number;
-	char	*message;
+	// char	*message;
 
 
 	//Check errors
@@ -60,19 +40,52 @@ int	main(int argc, char const *argv[])
 
 	//Receive parameters
 	PID = ft_atoi(argv[1]);
-	message = (char *)argv[2];
 
 	//Sending message
-	int i = 0;
-	while (message[i])
+	size_t i = 0;
+	while (i <= ft_strlen(argv[2]))
 	{
-		binary_number = 0;
-		convert_to_binary((unsigned char)message[i], &binary_number);
-		send_caracter(PID, binary_number);
+		convert_to_binary(argv[2][i], PID);
+		// send_caracter(PID, binary_number);
 		i++;
 	}
-
 }
+
+// void	convert_to_binary(int number, int *binary_number)
+// {
+// 	int	add_units;
+
+// 	add_units = 1;
+// 	while (number > 0)
+// 	{
+// 		*binary_number += (number % 2) * add_units;
+// 		number /= 2;
+// 		add_units *= 10;
+// 	}
+// }
+
+
+// void	send_caracter(pid_t PID, int	binary_number)
+// {
+// 	int	i;
+// 	char	*message;
+
+// 	(void)PID;
+// 	message = ft_itoa(binary_number);
+// 	//PROTEJER ESTE MENSAJE
+// 	ft_printf("%s\n", message);
+// 	i = 0;
+// 	while (message[i])
+// 	{
+// 		if (message[i] == '1')
+// 			kill(PID, SIGUSR1);
+// 		else if (message[i] == '0')
+// 			kill(PID, SIGUSR2);
+// 		usleep(10);
+// 		i++;
+// 	}
+// 	free(message);
+// }
 
 // int signal = ft_atoi(argv[2]);
 

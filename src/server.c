@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/10 18:53:05 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:37:18 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,113 @@
 
 char	*result;
 
-void	print_character(void)
-{
-	int		ascci_value;
-	int		actual_bit;
-
-	ascci_value = 0;
-	actual_bit = 64;
-	while (*result)
-	{
-		if (*result == '1')
-			ascci_value += actual_bit;
-		actual_bit /= 2;
-		result++;
-	}
-	ft_printf("\n ASCII VALUE: %d\n", ascci_value);
-	// ft_printf("%c", ascci_value);
-	result = ft_strdup("");
-}
-
 void	handler(int signal)
 {
-	char	*aux;
+	static	int	character = 0;
+	static	int	num_bits = 0;
 
-	if (!result)
-		result = ft_strdup("");
-	aux = result;
 	if (signal == SIGUSR1)
-		result = ft_strjoin(result, "1");
-	else if (signal == SIGUSR2)
-		result = ft_strjoin(result, "0");
-	// ft_printf("%s\n", result);
-	if (ft_strlen(result) == 7)
-		print_character();
-	free(aux);
+		character += (1 << num_bits);
+	num_bits++;
+	if (num_bits == 8)
+	{
+		//Comprobar que a llegado al final(bonus)
+		write(1, &character, 1);
+		character = 0;
+		num_bits = 0;
+	}
 }
 
 int	main(void)
 {
 	int					PID;
-	struct sigaction	ss;
-	sigset_t			signals;
+	// struct sigaction	ss;
+	// sigset_t			signals;
 
 	PID = getpid();
 	ft_printf("PID: %d\n", PID);
 	// Create mask
-	sigemptyset(&signals);
-	sigaddset(&signals, SIGUSR1);
-	sigaddset(&signals, SIGUSR2);
-	ss.sa_handler = handler;
+	// sigemptyset(&signals);
+	// sigaddset(&signals, SIGUSR1);
+	// sigaddset(&signals, SIGUSR2);
+	// ss.sa_handler = handler;
 	// Listener
-	sigaction(SIGUSR1, &ss, NULL);
-	sigaction(SIGUSR2, &ss, NULL);
+	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
+	// sigaction(SIGUSR1, &ss, NULL);
+	// sigaction(SIGUSR2, &ss, NULL);
 	while (1)
 	{
 	}
 	return (0);
 }
-// int		result;
+
+
+
+// void	print_character(void)
+// {
+// 	int		ascci_value;
+// 	int		actual_bit;
+
+// 	ascci_value = 0;
+// 	actual_bit = 64;
+// 	while (*result)
+// 	{
+// 		if (*result == '1')
+// 			ascci_value += actual_bit;
+// 		actual_bit /= 2;
+// 		result++;
+// 	}
+// 	ft_printf("\n ASCII VALUE: %d\n", ascci_value);
+// 	// ft_printf("%c", ascci_value);
+// 	result = ft_strdup("");
+// }
+
+// void	handler(int signal)
+// {
+// 	char	*aux;
+
+// 	if (!result)
+// 		result = ft_strdup("");
+// 	aux = result;
+// 	if (signal == SIGUSR1)
+// 		result = ft_strjoin(result, "1");
+// 	else if (signal == SIGUSR2)
+// 		result = ft_strjoin(result, "0");
+// 	// ft_printf("%s\n", result);
+// 	if (ft_strlen(result) == 7)
+// 		print_character();
+// 	free(aux);
+// }
 
 /* void	handler(int signal)
 {
-	if (signal == SIGUSR1)
-		ft_printf("%d", 1);
-	else if (signal == SIGUSR2)
-		ft_printf("%d", 0);
-}
- */
+	static	int i;
+
+	i = 0;
+
+	if (i <= 8)
+	{
+		if ()
+		{
+		}
+		
+		i++;
+	}
+	
+
+	// if (i <= 8)
+	// {
+	// 	if (signal == SIGUSR1)
+	// 		ft_printf("%d", 1);
+	// 	else if (signal == SIGUSR2)
+	// 		ft_printf("%d", 0);
+	// 	i++;
+	// }
+	ft_printf("\n");
+} */
+// int		result;
+
 
 /* void	handler(int signal)
 {
