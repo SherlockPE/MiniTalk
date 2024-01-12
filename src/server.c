@@ -6,25 +6,22 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/11 18:37:18 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:12:04 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-char	*result;
-
 void	handler(int signal)
 {
-	static	int	character = 0;
-	static	int	num_bits = 0;
+	static int	character = 0;
+	static int	num_bits = 0;
 
 	if (signal == SIGUSR1)
 		character += (1 << num_bits);
 	num_bits++;
 	if (num_bits == 8)
 	{
-		//Comprobar que a llegado al final(bonus)
 		write(1, &character, 1);
 		character = 0;
 		num_bits = 0;
@@ -33,29 +30,28 @@ void	handler(int signal)
 
 int	main(void)
 {
-	int					PID;
-	// struct sigaction	ss;
-	// sigset_t			signals;
+	int	pid;
 
-	PID = getpid();
-	ft_printf("PID: %d\n", PID);
-	// Create mask
-	// sigemptyset(&signals);
-	// sigaddset(&signals, SIGUSR1);
-	// sigaddset(&signals, SIGUSR2);
-	// ss.sa_handler = handler;
-	// Listener
+	pid = getpid();
+	ft_printf("PID: %d\n", pid);
 	signal(SIGUSR1, handler);
 	signal(SIGUSR2, handler);
-	// sigaction(SIGUSR1, &ss, NULL);
-	// sigaction(SIGUSR2, &ss, NULL);
 	while (1)
 	{
 	}
 	return (0);
 }
 
-
+// struct sigaction	ss;
+// sigset_t			signals;
+// Create mask
+// sigemptyset(&signals);
+// sigaddset(&signals, SIGUSR1);
+// sigaddset(&signals, SIGUSR2);
+// ss.sa_handler = handler;
+// Listener
+// sigaction(SIGUSR1, &ss, NULL);
+// sigaction(SIGUSR2, &ss, NULL);
 
 // void	print_character(void)
 // {
@@ -104,10 +100,10 @@ int	main(void)
 		if ()
 		{
 		}
-		
+
 		i++;
 	}
-	
+
 
 	// if (i <= 8)
 	// {
@@ -120,7 +116,6 @@ int	main(void)
 	ft_printf("\n");
 } */
 // int		result;
-
 
 /* void	handler(int signal)
 {

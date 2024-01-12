@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/12 14:15:38 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:06:09 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,28 @@ void	convert_to_binary(int ascii_value, pid_t PID)
 	}
 }
 
-void	handler_answer(int	signal)
+void	handler_answer(int signal)
 {
 	ft_printf("Message received: %d\n", signal);
 }
 
 int	main(int argc, char *argv[])
 {
-	pid_t 	PID;
-	size_t i;
+	pid_t	pid;
+	size_t	i;
 	char	*message;
 
-	//Check errors
 	if (argc <= 2)
 		return (ft_printf("Argument not valid\n"), 0);
-
-	//Receive parameters
-	PID = ft_atoi(argv[1]);
-
-	//Sending message
+	pid = ft_atoi(argv[1]);
 	message = argv[2];
 	i = 0;
 	signal(SIGUSR1, handler_answer);
 	while (i <= ft_strlen(message))
 	{
-		convert_to_binary(message[i], PID);
+		convert_to_binary(message[i], pid);
 		i++;
 	}
-	// sleep(100);
 }
 
 // void	convert_to_binary(int number, int *binary_number)
@@ -70,7 +64,6 @@ int	main(int argc, char *argv[])
 // 		add_units *= 10;
 // 	}
 // }
-
 
 // void	send_caracter(pid_t PID, int	binary_number)
 // {

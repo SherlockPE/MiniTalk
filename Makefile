@@ -6,7 +6,7 @@
 #    By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/04 13:26:31 by flopez-r          #+#    #+#              #
-#    Updated: 2024/01/12 14:01:06 by flopez-r         ###   ########.fr        #
+#    Updated: 2024/01/12 16:19:00 by flopez-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ clean:
 	$(MAKE) clean -C libft
 	rm -f $(OBJ_SERVER)
 	rm -f $(OBJ_CLIENT)
+	rm -f $(OBJ_SERVER_BONUS)
+	rm -f $(OBJ_CLIENT_BONUS)
 
 fclean: clean
 	$(MAKE) fclean -C libft
