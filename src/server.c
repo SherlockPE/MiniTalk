@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/12 18:07:58 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:21:02 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	handler(int signal)
 	static int	num_bits;
 
 	if (signal == SIGUSR1)
-		character += (1 << num_bits);
+		character |= (1 << num_bits);
 	num_bits++;
 	if (num_bits == 8)
 	{
-		write(1, &character, 1);
+		ft_printf("%c", character);
 		character = 0;
 		num_bits = 0;
 	}
