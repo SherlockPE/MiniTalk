@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/15 12:46:38 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:00:00 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	print_title(void)
 	ft_printf("PID: %d\n", pid);
 	ft_printf("------------------------------------------------------------\n");
 	ft_printf("\n");
+	
 }
 
 void	handler_bonus(int signal, siginfo_t *info, void *algo)
@@ -45,12 +46,15 @@ void	handler_bonus(int signal, siginfo_t *info, void *algo)
 	num_bits++;
 	if (num_bits == 8)
 	{
+		ft_printf("%c", character);
+		usleep(50);
 		if (character == 0)
-			kill(info->si_pid, SIGUSR1);
-		write(1, &character, 1);
+			kill(info->si_pid, SIGUSR2);
 		num_bits = 0;
 		character = 0;
 	}
+	usleep(50);
+	kill(info->si_pid, SIGUSR1);
 }
 
 int	main(void)
@@ -64,6 +68,7 @@ int	main(void)
 	sigaction(SIGUSR2, &signal_action, NULL);
 	while (1)
 	{
+		pause();
 	}
 	return (0);
 }
