@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/15 11:28:06 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:49:45 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	convert_to_binary(int ascii_value, pid_t PID)
 
 void	handler_answer(int signal)
 {
+	(void)signal;
 	ft_printf("Message received correctly");
 }
 
