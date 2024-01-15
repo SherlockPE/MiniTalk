@@ -6,23 +6,32 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/12 18:09:07 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:50:58 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+void	ft_perrror(char *message)
+{
+	ft_printf("%s\n", message);
+	exit(EXIT_FAILURE);
+}
+
 void	convert_to_binary(int ascii_value, pid_t PID)
 {
 	int	i;
+	int	error_case;
 
 	i = 0;
 	while (i < 8)
 	{
 		if (ascii_value & (1 << i))
-			kill(PID, SIGUSR1);
+			error_case = kill(PID, SIGUSR1);
 		else
-			kill(PID, SIGUSR2);
+			error_case = kill(PID, SIGUSR2);
+		if (error_case == -1)
+			ft_perrror("No se encontró el PID especificado 🗿");
 		i++;
 		usleep(100);
 	}
