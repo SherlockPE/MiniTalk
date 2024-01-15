@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/15 14:00:00 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:56:18 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	print_title(void)
 	ft_printf("PID: %d\n", pid);
 	ft_printf("------------------------------------------------------------\n");
 	ft_printf("\n");
-	
 }
 
 void	handler_bonus(int signal, siginfo_t *info, void *algo)

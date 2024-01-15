@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:50:18 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/15 13:55:28 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:56:08 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@ void	convert_to_binary(int ascii_value, pid_t PID)
 		if (error_case == -1)
 			ft_perrror("No se encontró el PID especificado 🗿");
 		i++;
-		// usleep(50);
 		pause();
 	}
 }
 
 void	handler_answer(int signal)
 {
-	static int count;
+	static int	count;
 
 	count++;
 	if (signal == SIGUSR2)
