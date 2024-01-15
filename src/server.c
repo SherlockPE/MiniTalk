@@ -6,11 +6,33 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/15 11:21:02 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:14:14 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	print_title(void)
+{
+	int	pid;
+
+	pid = getpid();
+	ft_printf("------------------------------------------------------------\n");
+	ft_printf("\n");
+	ft_printf("\n");
+	ft_printf("███╗   ███╗██╗███╗   ██╗██╗████████╗ █████╗ ██╗     ██╗  ██╗\n");
+	ft_printf("████╗ ████║██║████╗  ██║██║╚══██╔══╝██╔══██╗██║     ██║ ██╔╝\n");
+	ft_printf("██╔████╔██║██║██╔██╗ ██║██║   ██║   ███████║██║     █████╔╝ \n");
+	ft_printf("██║╚██╔╝██║██║██║╚██╗██║██║   ██║   ██╔══██║██║     ██╔═██╗ \n");
+	ft_printf("██║ ╚═╝ ██║██║██║ ╚████║██║   ██║   ██║  ██║███████╗██║  ██╗\n");
+	ft_printf("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝\n");
+	ft_printf("\n");
+	ft_printf("\n");
+	ft_printf("------------------------------------------------------------\n");
+	ft_printf("PID: %d\n", pid);
+	ft_printf("------------------------------------------------------------\n");
+	ft_printf("\n");
+}
 
 void	handler(int signal)
 {
@@ -30,10 +52,7 @@ void	handler(int signal)
 
 int	main(void)
 {
-	int	pid;
-
-	pid = getpid();
-	ft_printf("PID: %d\n", pid);
+	print_title();
 	signal(SIGUSR1, handler);
 	signal(SIGUSR2, handler);
 	while (1)
