@@ -6,7 +6,7 @@
 /*   By: flopez-r <flopez-r@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:01:03 by flopez-r          #+#    #+#             */
-/*   Updated: 2024/01/15 12:23:06 by flopez-r         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:46:38 by flopez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	handler_bonus(int signal, siginfo_t *info, void *algo)
 	num_bits++;
 	if (num_bits == 8)
 	{
+		if (character == 0)
+			kill(info->si_pid, SIGUSR1);
 		write(1, &character, 1);
 		num_bits = 0;
 		character = 0;
 	}
-	kill(info->si_pid, SIGUSR1);
-	pause();
 }
 
 int	main(void)
